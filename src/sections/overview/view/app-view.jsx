@@ -17,14 +17,14 @@ export default function AppView() {
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5, color: "#FFF" }}>
-        Olá, bem-vindo de volta! 👋
+        Olá, bem-vindo! 👋
       </Typography>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
-            title="Weekly Sales"
+            title="Itens Vendidos"
             total={714000}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
@@ -34,7 +34,7 @@ export default function AppView() {
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
-            title="New Users"
+            title="Clientes"
             total={1352831}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
@@ -43,7 +43,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Item Orders"
+            title="Estoque Atual"
             total={1723315}
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
             color="warning"
@@ -54,7 +54,7 @@ export default function AppView() {
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
-            title="Bug Reports"
+            title="Pagamentos"
             total={234}
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
@@ -63,7 +63,7 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
-            title="Website Visits"
+            title="Relatório mensal"
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
             subheader="(+43%) than last year"
             chart={{
@@ -106,7 +106,7 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
-            title="Current Visits"
+            title="Itens mais vendidos"
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
             chart={{
               series: [
@@ -148,7 +148,7 @@ export default function AppView() {
         <Grid xs={12} md={6} lg={4}>
           <AppOrderTimeline
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
-            title="Order Timeline"
+            title="Ordem de vendas"
             list={[...Array(5)].map((_, index) => ({
               id: faker.string.uuid(),
               title: [
@@ -169,7 +169,7 @@ export default function AppView() {
         <Grid xs={12} md={6} lg={8}>
           <AppTasks
             sx={{ backgroundColor: "#1C252E", color: "#FFF" }}
-            title="Tasks"
+            title="Tarefas"
             list={[
               { id: '1', name: 'Create FireStone Logo' },
               { id: '2', name: 'Add SCSS and JS files if required' },
