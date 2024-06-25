@@ -13,17 +13,13 @@ import { bgBlur } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
 
-import Searchbar from './common/searchbar';
 import { NAV, HEADER } from './config-layout';
 import AccountPopover from './common/account-popover';
-import LanguagePopover from './common/language-popover';
-import NotificationsPopover from './common/notifications-popover';
 
 // ----------------------------------------------------------------------
 
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
-
   const lgUp = useResponsive('up', 'lg');
 
   const renderContent = (
@@ -34,13 +30,9 @@ export default function Header({ onOpenNav }) {
         </IconButton>
       )}
 
-      <Searchbar />
-
       <Box sx={{ flexGrow: 1 }} />
 
       <Stack direction="row" alignItems="center" spacing={1}>
-        <LanguagePopover />
-        <NotificationsPopover />
         <AccountPopover />
       </Stack>
     </>
@@ -53,7 +45,7 @@ export default function Header({ onOpenNav }) {
         height: HEADER.H_MOBILE,
         zIndex: theme.zIndex.appBar + 1,
         ...bgBlur({
-          color: theme.palette.background.default,
+          color: "#1C252E"
         }),
         transition: theme.transitions.create(['height'], {
           duration: theme.transitions.duration.shorter,

@@ -9,7 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
+import { useRouter } from 'src/routes/hooks';
+
 import { account } from 'src/_mock/account';
+import { clearTokens } from 'src/services/http';
 
 // ----------------------------------------------------------------------
 
@@ -32,13 +35,16 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-
+  const router = useRouter()
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
   const handleClose = () => {
     setOpen(null);
+    clearTokens()
+    // router.push('/profile')
+    router.push('/login')
   };
 
   return (

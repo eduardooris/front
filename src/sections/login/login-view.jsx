@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -22,25 +20,36 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
+import { useForm } from 'src/hooks/useForm';
+
+import { login } from 'src/services/auth';
+
 export default function LoginView() {
   const theme = useTheme();
-
+  const [value, onChange] = useForm({})
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    router.push('/dashboard');
+  const handleClick = async () => {
+    if (!value.username || !value.password) {
+      return;
+    }
+    const response = await login({ username: value.username, password: value.password });
+    if (response) {
+      router.push('/');
+    }
   };
 
   const renderForm = (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="username" label="Usuário" onChange={onChange} />
 
         <TextField
           name="password"
-          label="Password"
+          label="Senha"
+          onChange={onChange}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -56,7 +65,7 @@ export default function LoginView() {
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          Esqueceu a senha?
         </Link>
       </Stack>
 
@@ -68,7 +77,7 @@ export default function LoginView() {
         color="inherit"
         onClick={handleClick}
       >
-        Login
+        Entrar
       </LoadingButton>
     </>
   );
@@ -99,52 +108,18 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
+          <Typography variant="h4">Fazer login</Typography>
 
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
+            Não tem uma conta?
             <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-              Get started
+              Registre-se
             </Link>
           </Typography>
 
-          <Stack direction="row" spacing={2}>
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:google-fill" color="#DF3E30" />
-            </Button>
 
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:facebook-fill" color="#1877F2" />
-            </Button>
 
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:twitter-fill" color="#1C9CEA" />
-            </Button>
-          </Stack>
 
-          <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider>
 
           {renderForm}
         </Card>
